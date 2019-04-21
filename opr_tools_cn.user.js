@@ -420,7 +420,7 @@ function init() {
 
         });
 
-        document.querySelector("#street-view + small").insertAdjacentHTML("beforeBegin", "<small class='pull-left'><span style='color:#ebbc4a'>Circle:</span> 40m</small>");
+        document.querySelector("#street-view + small").insertAdjacentHTML("beforeBegin", "<small class='pull-left'><span style='color:#ebbc4a'>Circle:</span> 40m, 20m</small>");
 
         // move portal rating to the right side. don't move on mobile devices / small width
         if (screen.availWidth > 768) {
