@@ -381,8 +381,9 @@ function init() {
             mapTypes(subController.map2, true);
         }, w);
 
-        // adding a green 40m circle around the new location marker that updates on dragEnd
+        // adding 2 circles around the new location marker that updates on dragEnd
         let draggableMarkerCircle;
+        let small_circle;
         let _showDraggableMarker = subController.showDraggableMarker;
         subController.showDraggableMarker = exportFunction(() => {
             _showDraggableMarker();
@@ -403,6 +404,17 @@ function init() {
                         fillOpacity: 0,
                     });
                 else draggableMarkerCircle.setCenter(newLocMarker.position);
+                if (small_circle == null)
+		             small_circle = new google.maps.Circle({
+         		        map: subController.map2,
+                        center: newLocMarker.position,
+                        radius: 20,
+                        strokeColor: "#4CAFA8", // I don't know what is that
+                        strokeOpacity: 1,
+                        strokeWeight: 2,
+                        fillOpacity: 0,
+        	        });
+                else small_circle.setCenter(newLocMarker.position);
 
             });
 
@@ -883,8 +895,8 @@ function init() {
         let submitButton = submitDiv.querySelector("button");
         submitButton.classList.add("btn", "btn-warning");
         let submitAndNext = submitButton.cloneNode(false);
-        submitAndNext.innerHTML = `<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;<span class="glyphicon glyphicon-forward"></span>`;
-        submitAndNext.title = "Submit and go to next review";
+        submitAndNext.innerHTML = `<div align="center" style="position:relative;right:350px;top:-627px">    <button>submit and next</button>   </div>`;
+	submitAndNext.title = "Submit and go to next review";
         submitAndNext.addEventListener("click", exportFunction(() => {
             exportFunction(() => {
                 window.location.assign("/recon");
@@ -981,7 +993,7 @@ function init() {
     }
 
 
-    // adding a 40m circle around the portal (capture range)
+    // adding a 40m circle around the portal (capture range) and a 20m circle around the portal (too close range)
     function mapOriginCircle(map) {
         // noinspection JSUnusedLocalSymbols
         const circle = new google.maps.Circle({
@@ -993,7 +1005,18 @@ function init() {
             strokeWeight: 1.5,
             fillOpacity: 0,
         });
+	const small_circle = new google.maps.Circle({
+            map: map,
+            center: map.center,
+            radius: 20,
+            strokeColor: "#ff8c6a",
+            strokeOpacity: 0.8,
+            strokeWeight: 1.5,
+            fillOpacity: 0,
+        });
     }
+
+
 
     // replace map markers with a nice circle
     function mapMarker(markers) {
