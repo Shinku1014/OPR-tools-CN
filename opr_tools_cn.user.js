@@ -895,7 +895,7 @@ function init() {
         let submitButton = submitDiv.querySelector("button");
         submitButton.classList.add("btn", "btn-warning");
         let submitAndNext = submitButton.cloneNode(false);
-        submitAndNext.innerHTML = `<div align="center" style="position:relative;right:350px;top:-627px">    <button>submit and next</button>   </div>`;
+        submitAndNext.innerHTML = `<div align="center" style="position:relative;right:683px;top:-590px">    <button>submit and next</button>   </div>`;
 	submitAndNext.title = "Submit and go to next review";
         submitAndNext.addEventListener("click", exportFunction(() => {
             exportFunction(() => {
