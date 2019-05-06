@@ -423,7 +423,7 @@ function init() {
         document.querySelector("#street-view + small").insertAdjacentHTML("beforeBegin", "<small class='pull-left'><span style='color:#ebbc4a'>Circle:</span> 40m, 20m</small>");
 
         // move portal rating to the right side. don't move on mobile devices / small width
-        if (screen.availWidth > 768) {
+        if (screen.availWidth > 1366) {
             const scorePanel = w.document.querySelector("div[class~='pull-right']");
             let nodeToMove = w.document.querySelector("div[class='btn-group']").parentElement;
             scorePanel.insertBefore(nodeToMove, scorePanel.firstChild);
@@ -900,7 +900,7 @@ function init() {
         let submitButton = submitDiv.querySelector("button");
         submitButton.classList.add("btn", "btn-warning");
         let submitAndNext = submitButton.cloneNode(false);
-        if (screen.availWidth > 768)
+        if (screen.availWidth > 1366)
             submitAndNext.innerHTML = `<div align="center" style="position:relative;right:683px;top:-590px">    <button>submit and next</button>   </div>`;
         else
             submitAndNext.innerHTML = `<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;<span class="glyphicon glyphicon-forward"></span>`;
@@ -1110,7 +1110,7 @@ function init() {
     function moveSubmitButton() {
         const submitDiv = w.document.querySelectorAll("#submitDiv, #submitDiv + .text-center");
 
-        if (screen.availWidth > 768) {
+        if (screen.availWidth > 1366) {
             let newSubmitDiv = w.document.createElement("div");
             const classificationRow = w.document.querySelector(".classification-row");
             newSubmitDiv.className = "col-xs-12 col-sm-6";
