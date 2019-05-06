@@ -569,7 +569,12 @@ function init() {
                 w.document.querySelector("[ng-click=\"answerCtrl2.confirmLowQualityOld()\"]").click();
                 currentSelectable = 0;
                 event.preventDefault();
-            } // click first/selected duplicate (key D)
+            }
+            else if (event.keyCode === 13 || event.keyCode === 32) {
+                submitAndNext.focus();
+                w.document.querySelector("[ng-click=\"answerCtrl.submitForm()\"]").click();
+                event.preventDefault();
+            }// click first/selected duplicate (key D)
             else if ((event.keyCode === 68) && w.document.querySelector("#content > button")) {
                 w.document.querySelector("#content > button").click();
                 currentSelectable = 0;
@@ -895,8 +900,11 @@ function init() {
         let submitButton = submitDiv.querySelector("button");
         submitButton.classList.add("btn", "btn-warning");
         let submitAndNext = submitButton.cloneNode(false);
-        submitAndNext.innerHTML = `<div align="center" style="position:relative;right:683px;top:-590px">    <button>submit and next</button>   </div>`;
-	submitAndNext.title = "Submit and go to next review";
+        if (screen.availWidth > 768)
+            submitAndNext.innerHTML = `<div align="center" style="position:relative;right:683px;top:-590px">    <button>submit and next</button>   </div>`;
+        else
+            submitAndNext.innerHTML = `<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;<span class="glyphicon glyphicon-forward"></span>`;
+        submitAndNext.title = "Submit and go to next review";
         submitAndNext.addEventListener("click", exportFunction(() => {
             exportFunction(() => {
                 window.location.assign("/recon");
