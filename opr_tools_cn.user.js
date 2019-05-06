@@ -1120,7 +1120,7 @@ function init() {
     }
 
     // expand automatically the "What is it?" filter text box
-    function expandWhatIsItBox() {
+    function expandWhatIsItBox() { return;
         try {
             const f = w.document.querySelector("#WhatIsItController > div > p > span.ingress-mid-blue.text-center");
             setTimeout(() => {
