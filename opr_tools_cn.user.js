@@ -423,11 +423,11 @@ function init() {
         document.querySelector("#street-view + small").insertAdjacentHTML("beforeBegin", "<small class='pull-left'><span style='color:#ebbc4a'>Circle:</span> 40m, 20m</small>");
 
         // move portal rating to the right side. don't move on mobile devices / small width
-        if (screen.availWidth > 768) {
+        /* if (screen.availWidth > 768) {
             const scorePanel = w.document.querySelector("div[class~='pull-right']");
             let nodeToMove = w.document.querySelector("div[class='btn-group']").parentElement;
             scorePanel.insertBefore(nodeToMove, scorePanel.firstChild);
-        }
+        } */
 
         // bind click-event to Dup-Images-Filmstrip. result: a click to the detail-image the large version is loaded in another tab
         const imgDups = w.document.querySelectorAll("#map-filmstrip > ul > li > img");
@@ -504,8 +504,7 @@ function init() {
         let maxItems = 7;
 
         // a list of all 6 star button rows, and the two submit buttons
-        let starsAndSubmitButtons = w.document.querySelectorAll(".col-sm-6 .btn-group, .col-sm-4.hidden-xs .btn-group, .big-submit-button");
-
+        let starsAndSubmitButtons = w.document.querySelectorAll("#AnswersController > form > div:nth-child(1) > div:nth-child(1) > div > div, .col-sm-6 .btn-group, .col-sm-4.hidden-xs .btn-group, .big-submit-button");
         function highlight() {
             starsAndSubmitButtons.forEach(exportFunction((element) => {
                 element.style.border = "none";
@@ -569,7 +568,12 @@ function init() {
                 w.document.querySelector("[ng-click=\"answerCtrl2.confirmLowQualityOld()\"]").click();
                 currentSelectable = 0;
                 event.preventDefault();
-            } // click first/selected duplicate (key D)
+            }
+            else if (event.keyCode === 13 || event.keyCode === 32) {
+                submitAndNext.focus();
+                w.document.querySelector("[ng-click=\"answerCtrl.submitForm()\"]").click();
+                event.preventDefault();
+            }// click first/selected duplicate (key D)
             else if ((event.keyCode === 68) && w.document.querySelector("#content > button")) {
                 w.document.querySelector("#content > button").click();
                 currentSelectable = 0;
@@ -895,8 +899,11 @@ function init() {
         let submitButton = submitDiv.querySelector("button");
         submitButton.classList.add("btn", "btn-warning");
         let submitAndNext = submitButton.cloneNode(false);
-        submitAndNext.innerHTML = `<div align="center" style="position:relative;right:683px;top:-590px">    <button>submit and next</button>   </div>`;
-	submitAndNext.title = "Submit and go to next review";
+        if (screen.availWidth > 768)
+            submitAndNext.innerHTML = `<div align="center" style="position:relative;right:683px;top:-590px">    <button>submit and next</button>   </div>`;
+        else
+            submitAndNext.innerHTML = `<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;<span class="glyphicon glyphicon-forward"></span>`;
+        submitAndNext.title = "Submit and go to next review";
         submitAndNext.addEventListener("click", exportFunction(() => {
             exportFunction(() => {
                 window.location.assign("/recon");
