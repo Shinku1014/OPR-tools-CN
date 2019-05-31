@@ -899,10 +899,7 @@ function init() {
         let submitButton = submitDiv.querySelector("button");
         submitButton.classList.add("btn", "btn-warning");
         let submitAndNext = submitButton.cloneNode(false);
-        if (screen.availWidth > 768)
-            submitAndNext.innerHTML = `<div align="center" style="position:relative;right:683px;top:-590px">    <button>submit and next</button>   </div>`;
-        else
-            submitAndNext.innerHTML = `<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;<span class="glyphicon glyphicon-forward"></span>`;
+        submitAndNext.innerHTML = `<span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;<span class="glyphicon glyphicon-forward"></span>`;
         submitAndNext.title = "Submit and go to next review";
         submitAndNext.addEventListener("click", exportFunction(() => {
             exportFunction(() => {
