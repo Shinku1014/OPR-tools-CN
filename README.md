@@ -1,4 +1,5 @@
 # OPR-tools-CN
+[链接放顶上](https://github.com/Shinku1014/OPR-tools-CN/raw/patch-1/opr_tools_cn.user.js)
 A plugin for ingress OPR page    
 ![](https://raw.githubusercontent.com/CubicPill/OPR-tools-CN/master/demo/screenshot.png)
 ![](https://raw.githubusercontent.com/CubicPill/OPR-tools-CN/master/demo/dropdown.png)
