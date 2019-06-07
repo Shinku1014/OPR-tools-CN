@@ -393,7 +393,16 @@ function init() {
 
             google.maps.event.addListener(newLocMarker, "dragend", function () {
 
-                
+                if (draggableMarkerCircle == null)
+                    draggableMarkerCircle = new google.maps.Circle({
+                        map: subController.map2,
+                        center: newLocMarker.position,
+                        radius: 40,
+                        strokeColor: "#4CAF50", // material green 500
+                        strokeOpacity: 1,
+                        strokeWeight: 2,
+                        fillOpacity: 0,
+                    });
                 else draggableMarkerCircle.setCenter(newLocMarker.position);
                 if (small_circle == null)
 		             small_circle = new google.maps.Circle({
@@ -991,7 +1000,15 @@ function init() {
     // adding a 40m circle around the portal (capture range) and a 20m circle around the portal (too close range)
     function mapOriginCircle(map) {
         // noinspection JSUnusedLocalSymbols
-        
+        const circle = new google.maps.Circle({
+            map: map,
+            center: map.center,
+            radius: 40,
+            strokeColor: "#ebbc4a",
+            strokeOpacity: 0.8,
+            strokeWeight: 1.5,
+            fillOpacity: 0,
+        });
 	const small_circle = new google.maps.Circle({
             map: map,
             center: map.center,
